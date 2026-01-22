@@ -48,7 +48,42 @@ class ModelTrainer:
                 "Extra Trees Regressor": ExtraTreesRegressor()
             }
 
-            model_report:dict = evaluate_models(X_train,y_train,X_test,y_test,models)
+            params = {
+                "Decision Tree": {
+                    'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                },
+
+                "Random Forest":{
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+
+                "Gradient Boosting":{
+                    'learning_rate':[.1,.01,.05,.001],
+                    'subsample':[0.6,0.7,0.75,0.8,0.85,0.9],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+
+                "K-Neighbors Regressor": {},
+
+                "Logistic Regression": {},   # matches models key
+
+                "XGB Regressor":{            # space added
+                    'learning_rate':[.1,.01,.05,.001],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+
+                "Ada Boost Regressor":{
+                    'learning_rate':[.1,.01,0.5,.001],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+
+                "Extra Trees Regressor": {}
+        }
+
+
+
+
+            model_report:dict = evaluate_models(X_train,y_train,X_test,y_test,models,params=params)
 
             # To get the best model score from dict
             best_model_score = max(sorted(model_report.values()))
