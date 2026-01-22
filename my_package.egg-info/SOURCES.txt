@@ -6,6 +6,7 @@ my_package.egg-info/dependency_links.txt
 my_package.egg-info/requires.txt
 my_package.egg-info/top_level.txt
 src/__init__.py
+src/app.py
 src/exception.py
 src/logger.py
 src/utils.py
